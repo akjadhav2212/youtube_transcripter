@@ -11,7 +11,7 @@ const path = require('path');
 
 // Serve static files from the "public" directory
 app.get("/video",async (req,res)=>{
-    const videoId = req.query.videoId;
+    const videoId = String(req.query.videoId);
     try{
         const tt = await YoutubeTranscript.fetchTranscript(videoId);
         let transcript_text = ""
