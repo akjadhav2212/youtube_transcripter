@@ -14,7 +14,8 @@ function App() {
     const linkAddress = inputref.current.value;
     // inputref.current.value="";
     const id = linkAddress.match(/(?:.be\/|\/watch\?v=|\/(?=p\/))([\w\/\-]+)/)[1];
-    const response = await fetch('/video?videoId='+id);
+    const response = await fetch('http://localhost:4000/video?videoId='+id);
+    console.log(response);
     const data = await response.json();
     if(data.success){
       console.log(data.message);
