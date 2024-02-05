@@ -10,8 +10,6 @@ app.use(cors());
 const path = require('path');
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'dist')));
-
 app.get("/video",async (req,res)=>{
     const videoId = req.query.videoId;
     try{
