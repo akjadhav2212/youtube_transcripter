@@ -7,11 +7,10 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-const path = require('path');
 
-// Serve static files from the "public" directory
-app.get("/video",async (req,res)=>{
-    const videoId = String(req.query.videoId);
+app.post("/video",async (req,res)=>{
+    const videoId = req.body.videoId;
+    console.log(videoId)
     try{
         const tt = await YoutubeTranscript.fetchTranscript(videoId);
         let transcript_text = ""
@@ -24,7 +23,7 @@ app.get("/video",async (req,res)=>{
         const model = genAI.getGenerativeModel({ model: "gemini-pro"});
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        res.json({
+        return res.json({
             "success":true,
             "message":response.text()
         })
@@ -32,7 +31,7 @@ app.get("/video",async (req,res)=>{
     catch(e){
         return res.json({
             "success":false,
-            "message":e.message+videoId
+            "message":e.message
         })
     }
     
