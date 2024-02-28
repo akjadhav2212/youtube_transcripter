@@ -10,8 +10,14 @@ app.use(cors());
 
 app.post("/video",async (req,res)=>{
     const videoId = req.body.videoId;
+    if(!videoId){
+        return res.json({
+            "success":false,
+            "message":"undefined string"
+        })
+    }
     try{
-        if(!videoId)throw new Error();
+
         const tt = await YoutubeTranscript.fetchTranscript(videoId);
 
         let transcript_text = ""
