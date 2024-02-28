@@ -10,9 +10,10 @@ app.use(cors());
 
 app.post("/video",async (req,res)=>{
     const videoId = req.body.videoId;
-    console.log(videoId)
     try{
+        if(!videoId)throw new Error();
         const tt = await YoutubeTranscript.fetchTranscript(videoId);
+
         let transcript_text = ""
         for(let i = 0; i < tt.length; i++){
             transcript_text+=tt[i].text+" ";

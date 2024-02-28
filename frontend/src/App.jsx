@@ -14,7 +14,13 @@ function App() {
     const linkAddress = inputref.current.value;
     // inputref.current.value="";
     const id = linkAddress.match(/(?:.be\/|\/watch\?v=|\/(?=p\/))([\w\/\-]+)/)[1];
-    const response = await fetch('https://youtube-transcripter-api.onrender.com/video?videoId='+id);
+    const response = await fetch('http://localhost:4000/video', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({videoId:id})
+    });
     console.log(response);
     const data = await response.json();
     if(data.success){
