@@ -44,8 +44,6 @@ app.post("/video",async (req,res)=>{
     
 
 })
-
-
 app.listen(process.env.PORT,()=>{
     console.log("Server is hosted on:",process.env.PORT)
 });
