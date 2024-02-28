@@ -14,7 +14,7 @@ function App() {
     const linkAddress = inputref.current.value;
     // inputref.current.value="";
     const id = linkAddress.match(/(?:.be\/|\/watch\?v=|\/(?=p\/))([\w\/\-]+)/)[1];
-    const response = await fetch('ec2-13-126-71-104.ap-south-1.compute.amazonaws.com:80/video', {
+    const response = await fetch('http://ec2-13-126-71-104.ap-south-1.compute.amazonaws.com:80/video', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
